@@ -1,7 +1,10 @@
+---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: jenkins-python
+  labels:
+    version: {{VERSION}}
 spec:
   replicas: 1
   selector:
@@ -11,6 +14,7 @@ spec:
     metadata:
       labels:
         app: jenkins-python
+        version: {{VERSION}}
     spec:
       volumes:
         - name: dns
@@ -21,10 +25,10 @@ spec:
           hostPath:
             path: /etc/localtime
             type: File
-      imagePullPolicy: Always
       containers:
         - name: jenkins-python
           image: {{IMAGE}}
+          imagePullPolicy: Always
           volumeMounts:
             - name: dns
               mountPath: /etc/resolv.conf
