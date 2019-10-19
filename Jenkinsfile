@@ -23,6 +23,7 @@ pipeline {
         sh 'mkdir -p ~/.kube'
         sh 'echo ${K8S_CONFIG} | base64 -d > ~/.kube/config'
         sh 'sed -i "s#{{IMAGE}}#${DOCKER_REGISTRY_HOST}/${NAME}:${TAG}#g" ./kubernetes.yaml'
+        sh 'sed -i "s#{{VERSION}}#${COMMIT_VERSION}#g" ./kubernetes.yaml'
         sh 'cat ./kubernetes.yaml'
         sh 'kubectl get pod | wc -l'
         sh 'kubectl apply -f ./kubernetes.yaml'
@@ -36,5 +37,6 @@ pipeline {
     DOCKER_REGISTRY_HOST = 'docker.io'
     NAME = 'tomoncleshare/jenkins-python'
     TAG = 'v1.0'
+    COMMIT_VERSION=$(git describe --tags --always)
   }
 }
