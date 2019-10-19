@@ -23,11 +23,12 @@ pipeline {
         docker {
           image 'lwolf/helm-kubectl-docker'
         }
+
       }
       steps {
-        sh "mkdir -p ~/.kube"
+        sh 'mkdir -p ~/.kube'
         sh "echo ${K8S_CONFIG} | base64 -d > ~/.kube/config"
-        sh "./deploy.sh"
+        sh './deploy.sh'
       }
     }
   }
