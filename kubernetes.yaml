@@ -1,16 +1,21 @@
+---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: jenkins-python
+  labels:
+    version: {{VERSION}}
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: jenkins-python
+      version: {{VERSION}}
   template:
     metadata:
       labels:
         app: jenkins-python
+        version: {{VERSION}}
     spec:
       volumes:
         - name: dns
@@ -31,7 +36,7 @@ spec:
             - name: localtime
               mountPath: /etc/localtime
           ports:
-            - containerPort: 5000
+            - containerPort: 50000
               protocol: TCP
 
 ---
