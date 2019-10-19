@@ -34,8 +34,8 @@ pipeline {
   environment {
     DOCKER_REGISTRY_CREDS = credentials('docker-hub-registry-auth-id')
     K8S_CONFIG = credentials('kubernetes-config-secret-id')
-    DOCKER_REGISTRY_HOST = 'docker.io/tomoncleshare'
-    NAME = 'jenkins-python'
+    DOCKER_REGISTRY_HOST = 'docker.io'
+    NAME = 'tomoncleshare/jenkins-python'
     TAG = 'v1.0'
   }
 }
