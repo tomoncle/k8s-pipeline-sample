@@ -1,6 +1,8 @@
 # jenkins-python
 jenkin+kubernetes+github 集成测试用例.
 
+![](https://raw.githubusercontent.com/tomoncle/img/master/20191019170131.png)
+
 ### `pod` 滚动升级实现：
 * 1.修改`{{version}}` 实现对 `deployment` 资源的更新.
 
