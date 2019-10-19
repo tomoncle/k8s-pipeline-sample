@@ -12,12 +12,6 @@ pipeline {
         sh 'docker push ${DOCKER_REGISTRY_HOST}/${NAME}:${TAG}'
       }
     }
-    stage('docker clean') {
-      steps {
-        sh 'echo "clean none image"'
-        sh 'if [ $(docker images| grep "<none>"| wc -l) -gt 0 ]; then docker rmi -f $(docker images| grep "<none>" | awk "{print $3}"); fi'
-      }
-    }
     stage('deploy') {
       agent {
         docker {
