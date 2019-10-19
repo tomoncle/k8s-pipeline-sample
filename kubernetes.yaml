@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: jenkins-python
-      version: {{VERSION}}
   template:
     metadata:
       labels:
