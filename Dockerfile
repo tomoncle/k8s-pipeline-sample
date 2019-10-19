@@ -7,4 +7,4 @@ ADD ./ /workspace/jenkins-python
 RUN pip install -r /workspace/jenkins-python/requirements.txt
 
 EXPOSE 5000
-CMD ["python", "/workspace/flaskapp/app.py"]
+CMD ["python", "/workspace/jenkins-python/app.py"]
