@@ -21,10 +21,10 @@ spec:
           hostPath:
             path: /etc/localtime
             type: File
-      imagePullPolicy: Always
       containers:
         - name: jenkins-python
           image: {{IMAGE}}
+          imagePullPolicy: Always
           volumeMounts:
             - name: dns
               mountPath: /etc/resolv.conf
