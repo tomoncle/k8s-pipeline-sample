@@ -15,7 +15,7 @@ pipeline {
     stage('docker clean') {
       steps {
         sh 'echo "clean none image"'
-        sh 'docker rmi $(docker images| grep "<none>" | awk "{print $3}")'
+        sh 'if [ $(docker images| grep "<none>"| wc -l) -gt 0 ]; then docker rmi -f $(docker images| grep "<none>" | awk "{print $3}"); fi'
       }
     }
     stage('deploy') {
