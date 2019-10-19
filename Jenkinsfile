@@ -21,8 +21,7 @@ pipeline {
       }
       steps {
         sh 'mkdir -p ~/.kube'
-        sh "echo ${K8S_CONFIG} | base64 -d > ~/.kube/config"
-        sh 'sh ./deploy.sh'
+        sh 'echo ${K8S_CONFIG} | base64 -d > ~/.kube/config'
         sh 'image=${DOCKER_REGISTRY_HOST}/${NAME}:${TAG}'
         sh 'sed -i "s#{{IMAGE}}#$image#g" ./kubernetes.yaml'
         sh 'cat ./kubernetes.yaml'
