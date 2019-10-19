@@ -37,6 +37,6 @@ pipeline {
     DOCKER_REGISTRY_HOST = 'docker.io'
     NAME = 'tomoncleshare/jenkins-python'
     TAG = 'v1.0'
-    COMMIT_VERSION=$(git describe --tags --always)
+    COMMIT_VERSION = sh(returnStdout: true,script: 'git describe --tags --always').trim()
   }
 }
