@@ -3,7 +3,7 @@
 image=${DOCKER_REGISTRY_HOST}/${NAME}:${TAG}
 sed -i "s#{{IMAGE}}#$image#g" ./kubernetes.yaml
 cat ./kubernetes.yaml
-cat ~/.kube/config
+
 kubectl get po
-kubectl delete -f ./kubernetes.yaml
+kubectl delete -f ./kubernetes.yaml > /dev/null 2>&1
 kubectl apply -f ./kubernetes.yaml
