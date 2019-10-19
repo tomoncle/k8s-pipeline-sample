@@ -25,7 +25,6 @@ pipeline {
         sh 'sed -i "s#{{IMAGE}}#${DOCKER_REGISTRY_HOST}/${NAME}:${TAG}#g" ./kubernetes.yaml'
         sh 'cat ./kubernetes.yaml'
         sh 'kubectl get pod | wc -l'
-        sh 'kubectl delete -f ./kubernetes.yaml > /dev/null 2>&1'
         sh 'kubectl apply -f ./kubernetes.yaml'
         sh 'kubectl get -f ./kubernetes.yaml'
       }
