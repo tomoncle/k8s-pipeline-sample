@@ -28,7 +28,7 @@ pipeline {
       steps {
         sh 'mkdir -p ~/.kube'
         sh "echo ${K8S_CONFIG} | base64 -d > ~/.kube/config"
-        sh './deploy.sh'
+        sh 'sh ./deploy.sh'
       }
     }
   }
