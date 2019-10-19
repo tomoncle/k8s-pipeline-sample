@@ -1,0 +1,53 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: jenkins-python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-python
+  template:
+    metadata:
+      labels:
+        app: jenkins-python
+    spec:
+      volumes:
+        - name: dns
+          hostPath:
+            path: /etc/resolv.conf
+            type: File
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+            type: File
+      imagePullPolicy: Always
+      containers:
+        - name: jenkins-python
+          image: {{IMAGE}}
+          volumeMounts:
+            - name: dns
+              mountPath: /etc/resolv.conf
+            - name: localtime
+              mountPath: /etc/localtime
+          ports:
+            - containerPort: 50000
+              protocol: TCP
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: jenkins-python 
+  name: jenkins-python
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 35000
+    protocol: TCP
+  selector:
+    app: jenkins-python
