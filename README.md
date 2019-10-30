@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   name: jenkins-python
   labels:
-    version: {{VERSION}}
+    version: "{{VERSION}}"
 spec:
   replicas: 1
   selector:
@@ -25,7 +25,7 @@ spec:
     metadata:
       labels:
         app: jenkins-python
-        version: {{VERSION}}
+        version: "{{VERSION}}"
 ```
 
 * 4.效果：
