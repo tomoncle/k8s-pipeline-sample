@@ -1,11 +1,8 @@
 # jenkins-python
-### `jenkin` + `kubernetes` + `gitlab` 集成测试用例（配置见`Jenkinsfile`）
+## `jenkin` + `kubernetes` + `gitlab` 集成测试用例（配置见`Jenkinsfile`）
 ![](https://raw.githubusercontent.com/tomoncle/img/master/20191019170131.png)
 
-### `gitee` + `drone` + `docker-registry` 集成测试用例（配置见`.drone.yml`）
-![](https://raw.githubusercontent.com/tomoncle/img/master/drone-python.jpg)
-
-## `pod` 滚动升级实现：
+### `pod` 滚动升级实现：
 * 1.修改`{{version}}` 实现对 `deployment` 资源的更新.
 
 * 2.执行更新操作: `kubectl apply -f ./kubernetes.yaml`.
@@ -49,3 +46,7 @@ NAME                              READY   STATUS        RESTARTS   AGE
 jenkins-f44f789bf-s7dxm           1/1     Running       0          2d
 jenkins-python-6f84d9fc97-2wr5s   1/1     Running       0          30s
 ```
+
+## `gitee` + `drone` + `docker-registry` 集成测试用例（配置见`.drone.yml`）
+![](https://raw.githubusercontent.com/tomoncle/img/master/drone-python.jpg)
+
