@@ -1,9 +1,11 @@
 # jenkins-python
-jenkin+kubernetes+github 集成测试用例.
-
+### `jenkin` + `kubernetes` + `gitlab` 集成测试用例（配置见`Jenkinsfile`）
 ![](https://raw.githubusercontent.com/tomoncle/img/master/20191019170131.png)
 
-### `pod` 滚动升级实现：
+### `gitee` + `drone` + `docker-registry` 集成测试用例（配置见`.drone.yml`）
+![](https://raw.githubusercontent.com/tomoncle/img/master/drone-python.jpg)
+
+## `pod` 滚动升级实现：
 * 1.修改`{{version}}` 实现对 `deployment` 资源的更新.
 
 * 2.执行更新操作: `kubectl apply -f ./kubernetes.yaml`.
