@@ -1,0 +1,44 @@
+---
+kind: pipeline
+type: docker
+name: jenkins-python
+
+platform:
+  arch: amd64
+  os: linux
+
+steps:
+- name: test
+  image: tomoncleshare/python36:alpine
+  environment:
+    docker_host: registry.cn-beijing.aliyuncs.com
+    username:
+      from_secret: DOCKER_REGISTRY_USERNAME
+    undifind:
+      from_secret: NOT_SET_VALUE
+  commands:
+  - ls
+  - echo $docker_host, $username, $undifind
+
+- name: build
+  image: tomoncleshare/python36:alpine
+  commands:
+  - pip install -U pip
+  - pip install -r requirements.txt
+
+- name: publish
+  image: plugins/docker:20.10
+  settings:
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
+    dockerfile: Dockerfile
+    repo: registry.cn-beijing.aliyuncs.com/tomoncleshare/jenkins-python
+    registry: registry.cn-beijing.aliyuncs.com
+    username:
+      from_secret: DOCKER_REGISTRY_USERNAME
+    password:
+      from_secret: DOCKER_REGISTRY_PASSWORD
+  when:
+    event:
+    - push
+    - tag
